@@ -145,3 +145,9 @@ mm/memory_monitor.c
 #drivers/tri_state_key
 #drivers/oneplus
 #drivers/vibrator
+
+*.rej
+*.diff
+*.patch
+*.list
+out/*
