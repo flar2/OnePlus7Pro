@@ -145,3 +145,9 @@ drivers/step_motor
 drivers/tri_state_key
 drivers/oneplus
 drivers/vibrator
+
+*.rej
+*.diff
+*.patch
+*.list
+out/*
