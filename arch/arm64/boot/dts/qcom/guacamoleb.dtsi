@@ -320,6 +320,13 @@
 	/* for external ship mode support */
 	op,stm-ctrl-gpio = <&tlmm 21 0x00>;
 	op,vbus-ctrl-gpio = <&pm8150_gpios 9 GPIO_ACTIVE_LOW>;
+	/* ibatmax setting for different temp regions */
+	ibatmax-little-cold-ma = <320>;
+	ibatmax-little-cool-thr-ma = <1750>;
+	ibatmax-cool-thr-ma = <1000>;
+	ibatmax-cool-ma = <1450>;
+	ibatmax-warm-ma = <1050>;
+	op,little_cold_term_current = <250>;
 };
 
 &mtp_batterydata {

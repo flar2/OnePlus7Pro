@@ -596,6 +596,7 @@ struct smb_charger {
 	int			default_icl_ua;
 	int			otg_cl_ua;
 	int			sw_iterm_ma;
+	int			little_cold_iterm_ma;
 	bool			check_batt_full_by_sw;
 /*@bsp, 20181023 icl set 1A if battery lower than 15%*/
 	bool			OTG_ICL_CTRL;
