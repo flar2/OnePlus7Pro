@@ -1740,6 +1740,32 @@ static const struct file_operations proc_pid_memplus_type_operations = {
 	.llseek		= seq_lseek,
 	.release	= single_release,
 };
+#else
+static inline ssize_t
+memplus_type_write(struct file *file, const char __user *buf,
+	    size_t count, loff_t *offset)
+{
+	return count;
+}
+
+static inline ssize_t
+memplus_type_read(struct file *file, char __user *buf,
+	    size_t count, loff_t *offset)
+{
+	return count;
+}
+
+static inline int memplus_type_open(struct inode *inode, struct file *filp)
+{
+	return 0;
+}
+
+static const struct file_operations proc_pid_memplus_type_operations = {
+	.open		= memplus_type_open,
+	.read		= memplus_type_read,
+	.write		= memplus_type_write,
+	.llseek		= noop_llseek,
+};
 #endif
 
 #ifdef CONFIG_SCHED_AUTOGROUP
@@ -3378,9 +3404,7 @@ static const struct pid_entry tgid_base_stuff[] = {
 	REG("sched_init_task_load", 00644, proc_pid_sched_init_task_load_operations),
 	REG("sched_group_id", 00666, proc_pid_sched_group_id_operations),
 #endif
-#ifdef CONFIG_MEMPLUS
 	REG("memplus_type",      S_IRUGO|S_IWUGO, proc_pid_memplus_type_operations),
-#endif
 #ifdef CONFIG_SCHED_DEBUG
 	REG("sched",      S_IRUGO|S_IWUSR, proc_pid_sched_operations),
 #endif
