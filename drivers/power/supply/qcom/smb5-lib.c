@@ -3236,6 +3236,16 @@ int smblib_get_prop_usb_online(struct smb_charger *chg,
 		val->intval = true;
 		return rc;
 	}
+	chg->dash_on = get_prop_fast_chg_started(chg);
+	if (chg->dash_on) {
+		val->intval = true;
+		return rc;
+	}
+	chg->dash_on = get_prop_fast_chg_started(chg);
+	if (chg->dash_on) {
+		val->intval = true;
+		return rc;
+	}
 	if (is_client_vote_enabled(chg->usb_icl_votable,
 					CHG_TERMINATION_VOTER)) {
 		rc = smblib_get_prop_usb_present(chg, val);
@@ -7182,6 +7192,7 @@ static int set_dash_charger_present(int status)
 		g_chg->dash_present = status && charger_present;
 		if (g_chg->dash_present && !pre_dash_present) {
 			pr_err("set dash online\n");
+			g_chg->real_charger_type = POWER_SUPPLY_TYPE_DASH;
 			g_chg->usb_psy_desc.type = POWER_SUPPLY_TYPE_DASH;
 			vote(g_chg->usb_icl_votable, PD_VOTER, true,
 					DEFAULT_WALL_CHG_MA * 1000);
