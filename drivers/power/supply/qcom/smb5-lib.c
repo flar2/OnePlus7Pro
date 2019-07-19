@@ -7197,6 +7197,10 @@ static int set_dash_charger_present(int status)
 			vote(g_chg->usb_icl_votable, PD_VOTER, true,
 					DEFAULT_WALL_CHG_MA * 1000);
 		}
+		if (g_chg->dash_present) {
+			g_chg->real_charger_type = POWER_SUPPLY_TYPE_DASH;
+			g_chg->usb_psy_desc.type = POWER_SUPPLY_TYPE_DASH;
+		}
 		power_supply_changed(g_chg->batt_psy);
 		pr_info("dash_present = %d, charger_present = %d\n",
 				g_chg->dash_present, charger_present);

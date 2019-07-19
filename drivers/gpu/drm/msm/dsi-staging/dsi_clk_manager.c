@@ -1276,13 +1276,13 @@ int dsi_display_link_clk_force_update(void *client)
 		rc = -EAGAIN;
 		goto error;
 	}
-	rc = dsi_clk_update_link_clk_state(mngr, l_clks, (DSI_LINK_LP_CLK | DSI_LINK_HS_CLK), DSI_CLK_OFF, false);
+	rc = dsi_clk_update_link_clk_state(mngr, l_clks, (DSI_LINK_LP_CLK | DSI_LINK_HS_CLK), DSI_CLK_OFF, false); 
 	if (rc)
 	goto error;
 
-	rc = dsi_clk_update_link_clk_state(mngr, l_clks, (DSI_LINK_LP_CLK |
-	DSI_LINK_HS_CLK), DSI_CLK_ON, true);
-
+	rc = dsi_clk_update_link_clk_state(mngr, l_clks, (DSI_LINK_LP_CLK | 
+	DSI_LINK_HS_CLK), DSI_CLK_ON, true); 
+	
 	if (rc)
 		goto error;
 error:
