@@ -309,6 +309,16 @@ enum {
 	SMB_THERM,
 };
 
+static int __usb_connector_temp;
+module_param_named(
+	usb_connector_temp, __usb_connector_temp, int, 0644
+);
+
+static int __disable_connector_protect;
+module_param_named(
+	disable_connector_protect, __disable_connector_protect, int, 0644
+);
+
 #define PMI632_MAX_ICL_UA	3000000
 #define PM6150_MAX_FCC_UA	3000000
 static int smb5_chg_config_init(struct smb5 *chip)
@@ -3741,6 +3751,8 @@ static int smb5_probe(struct platform_device *pdev)
 	chg->weak_chg_icl_ua = &__weak_chg_icl_ua;
 	chg->lpd_enable = &__lpd_enable;
 	chg->lpd_result = &__lpd_result;
+	chg->usb_connector_temp = &__usb_connector_temp;
+	chg->disable_connector_protect = &__disable_connector_protect;
 	chg->mode = PARALLEL_MASTER;
 	chg->irq_info = smb5_irqs;
 	chg->die_health = -EINVAL;
