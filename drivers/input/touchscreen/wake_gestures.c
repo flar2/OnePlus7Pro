@@ -142,7 +142,20 @@ static int __init get_model(char *cmdline_model)
 		sweep_x_max = SWEEP_X_MAX_OP7;
 		sweep_edge = SWEEP_EDGE_OP7;
 		hw_version = OP7;
+	} else if (strstr(cmdline_model, "18865")) {
+		sweep_y_limit = SWEEP_Y_LIMIT_OP7;
+		sweep_x_limit = SWEEP_X_LIMIT_OP7;
+		sweep_x_b1 = SWEEP_X_B1_OP7;
+		sweep_x_b2 = SWEEP_X_B2_OP7;
+		sweep_y_start = SWEEP_Y_START_OP7;
+		sweep_x_start = SWEEP_X_START_OP7;
+		sweep_x_final = SWEEP_X_FINAL_OP7;
+		sweep_y_next = SWEEP_Y_NEXT_OP7;
+		sweep_x_max = SWEEP_X_MAX_OP7;
+		sweep_edge = SWEEP_EDGE_OP7;
+		hw_version = OP7;
 	}
+
 	return 0;
 }
 __setup("androidboot.project_name=", get_model);
